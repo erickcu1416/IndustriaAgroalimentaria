@@ -8,12 +8,8 @@ namespace IndustriaAgroalimentaria.Modelos
     {
         public string TemperaturaRecomendada { get; set; }
 
-        public ProductoCongelado(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada)
+        public ProductoCongelado(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada): base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen)
         {
-            FechaCaducidad = fechaCaducidad;
-            NumeroLote = numeroLote;
-            FechaEnvasado = fechaEnvasado;
-            PaisOrigen = paisOrigen;
             TemperaturaRecomendada = temperturaRecomendada;
         }
     }

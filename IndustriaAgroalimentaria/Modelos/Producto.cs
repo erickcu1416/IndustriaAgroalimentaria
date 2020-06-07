@@ -11,14 +11,12 @@ namespace IndustriaAgroalimentaria.Modelos
         public DateTime FechaEnvasado { get; set; }
         public string PaisOrigen { get; set; }
 
-        public Producto()
-        {
-
-        }
-        public Producto(DateTime fechaCaducidad, int numeroLote)
+        public Producto(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen)
         {
             FechaCaducidad = fechaCaducidad;
             NumeroLote = numeroLote;
+            FechaEnvasado = fechaEnvasado;
+            PaisOrigen = paisOrigen;
         }
     }
 }

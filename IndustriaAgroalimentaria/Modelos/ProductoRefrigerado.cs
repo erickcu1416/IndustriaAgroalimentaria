@@ -9,13 +9,9 @@ namespace IndustriaAgroalimentaria.Modelos
         public string COSA { get; set; } //código del organismo de supervisión alimentaria
         public string TemperaturaRecomendada { get; set; }
 
-        public ProductoRefrigerado(DateTime fechaCaducidad, int numeroLote, string cosa, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada)
+        public ProductoRefrigerado(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string cosa, string temperturaRecomendada): base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen)
         {
-            FechaCaducidad = fechaCaducidad;
-            NumeroLote = numeroLote;
             COSA = cosa;
-            FechaEnvasado = fechaEnvasado;
-            PaisOrigen = paisOrigen;
             TemperaturaRecomendada = temperturaRecomendada;
         }
 
