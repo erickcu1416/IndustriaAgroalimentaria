@@ -4,13 +4,13 @@ using System.Text;
 
 namespace IndustriaAgroalimentaria.Modelos
 {
-    public class ProductoCongelado : Producto
+    public abstract class ProductoCongelado : Producto
     {
         public string TemperaturaRecomendada { get; set; }
 
-        public ProductoCongelado(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada): base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen)
-        {
-            TemperaturaRecomendada = temperturaRecomendada;
-        }
+        //public ProductoCongelado(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada): base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen)
+        //{
+        //    TemperaturaRecomendada = temperturaRecomendada;
+        //}
     }
 }

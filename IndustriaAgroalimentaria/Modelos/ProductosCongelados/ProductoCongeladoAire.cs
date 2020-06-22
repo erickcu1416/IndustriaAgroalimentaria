@@ -11,13 +11,19 @@ namespace IndustriaAgroalimentaria.Modelos.ProductosCongelados
         public double PorcentajeDioxidoCarbono { get; set; }
         public double PorcentajeVaporAgua { get; set; }
 
-        public ProductoCongeladoAire(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada,
-            double porcentajeNitrogeno, double porcentajeOxigeno, double porcentajeDioxidoCarbono, double porcentajeVaporAgua) : base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen, temperturaRecomendada)
+        public override string ToString()
         {
-            PorcentajeNitrogeno = porcentajeNitrogeno;
-            PorcentajeOxigeno = porcentajeOxigeno;
-            PorcentajeDioxidoCarbono = porcentajeDioxidoCarbono;
-            PorcentajeVaporAgua = porcentajeVaporAgua;
+            return $"{Id}) Es un producto congelado con {PorcentajeNitrogeno.ToString()}";
         }
+
+
+        //public ProductoCongeladoAire(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen, string temperturaRecomendada,
+        //    double porcentajeNitrogeno, double porcentajeOxigeno, double porcentajeDioxidoCarbono, double porcentajeVaporAgua) : base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen, temperturaRecomendada)
+        //{
+        //    PorcentajeNitrogeno = porcentajeNitrogeno;
+        //    PorcentajeOxigeno = porcentajeOxigeno;
+        //    PorcentajeDioxidoCarbono = porcentajeDioxidoCarbono;
+        //    PorcentajeVaporAgua = porcentajeVaporAgua;
+        //}
     }
 }

@@ -6,8 +6,13 @@ namespace IndustriaAgroalimentaria.Modelos
 {
     public class ProductoFresco : Producto
     {
-        public ProductoFresco(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen) : base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen)
+        //public ProductoFresco(DateTime fechaCaducidad, int numeroLote, DateTime fechaEnvasado, string paisOrigen) : base(fechaCaducidad, numeroLote, fechaEnvasado, paisOrigen)
+        //{
+        //}
+
+        public override string ToString()
         {
+            return $"{Id}) Es un producto Fresco";
         }
     }
 }

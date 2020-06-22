@@ -1,4 +1,7 @@
-﻿using System;
+﻿using IndustriaAgroalimentaria.Application;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IndustriaAgroalimentaria
 {
@@ -6,7 +9,8 @@ namespace IndustriaAgroalimentaria
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Application.Application.App();
         }
+       
     }
 }
