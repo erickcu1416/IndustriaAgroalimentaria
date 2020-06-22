@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IndustriaAgroalimentaria.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,5 +14,10 @@ namespace IndustriaAgroalimentaria.Modelos.ProductosCongelados
         //{
         //    GSPLA = gspla;
         //}
+
+        public override string ToString()
+        {
+            return $"{Id}) El producto con el numero de lote {NumeroLote}, es un producto congelado con agua y GSPLA de {GSPLA}";
+        }
     }
 }

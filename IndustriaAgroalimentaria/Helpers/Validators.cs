@@ -6,6 +6,25 @@ namespace IndustriaAgroalimentaria.Helpers
 {
     public static class Validators
     {
+        public static uint isUnIntValidoConWriteLine(string mensaje)
+        {
+            uint result = 0;
+            do
+            {
+                Console.Write(mensaje);
+                string dato = Console.ReadLine();
+                try
+                {
+                    result = uint.Parse(dato);
+                }
+                catch (FormatException)
+                {
+                    Console.Write("Por favor, ingrese un dato correcto \n");
+                    result = 0;
+                }
+            } while (result == 0);
+            return result;
+        }
         public static int isIntValidoConWriteLine(string mensaje)
         {
             int result = 0;
@@ -53,7 +72,7 @@ namespace IndustriaAgroalimentaria.Helpers
             {
                 Console.Write(mensaje);
                 string dato = Console.ReadLine();
-                if (String.IsNullOrEmpty(result))
+                if (String.IsNullOrEmpty(dato))
                 {
                     Console.Write("Por favor, ingrese un dato correcto \n");
                 }

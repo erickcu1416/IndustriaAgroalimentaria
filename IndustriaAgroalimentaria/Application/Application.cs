@@ -47,7 +47,7 @@ namespace IndustriaAgroalimentaria.Application
             switch (opcion)
             {
                 case "1":
-                    //MenuProducto();
+                    ProductoService.BuscarProductos();
                     break;
                 case "2":
                     ProductoService.CrearProductoFresco();
@@ -65,7 +65,10 @@ namespace IndustriaAgroalimentaria.Application
                     ProductoService.CrearProductoCongeladoNitrogeno();
                     break;
                 case "7":
-                    ProductoService.CrearProductoCongeladoAgua();
+                    ProductoService.ActualizarProducto();
+                    break;
+                case "8":
+                    ProductoService.EliminarProducto();
                     break;
                 case "0": return;
             }

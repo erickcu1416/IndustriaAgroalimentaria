@@ -11,6 +11,122 @@ namespace IndustriaAgroalimentaria.Services
 {
     public static class ProductoService
     {
+        public static void ActualizarProducto()
+        {
+            Console.WriteLine("Actualizar producto");
+            Producto producto = SelecionarProducto();
+            if (producto != null)
+            {
+                var a = producto.GetType();
+                Console.WriteLine(a.Name);
+                switch (a.Name)
+                {
+                    case "ProductoCongeladoAire":
+                        ProductoCongeladoAire productoCongeladoAire = new ProductoCongeladoAire();
+                        productoCongeladoAire.Id = producto.Id; ;
+                        productoCongeladoAire = LlenarProductoCongeladoAire(productoCongeladoAire);
+                        using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+                        {
+                            context.Update(productoCongeladoAire);
+                            context.SaveChanges();
+                            Console.WriteLine("Producto actualizado");
+                        }
+                        break;
+                    case "ProductoCongeladoAgua":
+                        ProductoCongeladoAgua productoCongeladoAgua = new ProductoCongeladoAgua();
+                        productoCongeladoAgua.Id = producto.Id; ;
+                        LlenarProductoCongeladoAgua(productoCongeladoAgua);
+                        using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+                        {
+                            context.Update(productoCongeladoAgua);
+                            context.SaveChanges();
+                            Console.WriteLine("Producto actualizado");
+                        }
+                        break;
+                    case "ProductoCongeladoNitrogeno":
+                        ProductoCongeladoNitrogeno productoCongeladoNitrogeno = new ProductoCongeladoNitrogeno();
+                        productoCongeladoNitrogeno.Id = producto.Id; ;
+                        LlenarProductoCongeladoNitrogeno(productoCongeladoNitrogeno);
+                        using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+                        {
+                            context.Update(productoCongeladoNitrogeno);
+                            context.SaveChanges();
+                            Console.WriteLine("Producto actualizado");
+                        }
+                        break;
+                    case "ProductoFresco":
+                        ProductoFresco productoFresco = new ProductoFresco();
+                        productoFresco.Id = producto.Id; ;
+                        LlenarProductoFresco(productoFresco);
+                        using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+                        {
+                            context.Update(productoFresco);
+                            context.SaveChanges();
+                            Console.WriteLine("Producto actualizado");
+                        }
+                        break;
+                    case "ProductoRefrigerado":
+                        ProductoRefrigerado productoRefrigerado = new ProductoRefrigerado();
+                        productoRefrigerado.Id = producto.Id; ;
+                        LlenarProductoRefrigerado(productoRefrigerado);
+                        using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+                        {
+                            context.Update(productoRefrigerado);
+                            context.SaveChanges();
+                            Console.WriteLine("Producto actualizado");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        public static void EliminarProducto()
+        {
+            Console.WriteLine("Eliminar producto");
+            Producto producto = SelecionarProducto();
+            using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+            {
+                context.Remove(producto);
+                context.SaveChanges();
+                Console.WriteLine("Producto eliminado");
+            }
+        }
+
+        public static Producto SelecionarProducto()
+        {
+            BuscarProductos();
+            uint id = Validators.isUnIntValidoConWriteLine("Seleciona el código de producto: "); 
+            using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+            {
+                Producto producto = context.Productos.Find(id);
+                if (producto == null)
+                {
+                    Console.WriteLine("El producto es incorrecto, por favor selecciona otro");
+                    SelecionarProducto();
+                }
+                return producto;
+            }
+        }
+
+        public static void BuscarProductos()
+        {
+            Console.WriteLine("\nBuscar prodcutos por numero de lote");
+            string buscar = Validators.isStringValidoConWriteLine("Buscar: ");
+
+            using (IndustriaAgroalimentariaContext context = new IndustriaAgroalimentariaContext())
+            {
+                IQueryable<Producto> productos = context.Productos.Where(p => p.NumeroLote.ToString().Contains(buscar));
+                foreach (Producto producto in productos)
+                {
+                    Console.WriteLine(producto);
+                }
+            }
+        }
+
+
+        #region Productos
         public static void CrearProductoFresco()
         {
             Console.WriteLine("Crear producto");
@@ -54,10 +170,8 @@ namespace IndustriaAgroalimentaria.Services
             productoRefrigerado.FechaEnvasado = DateTime.Now;
             productoRefrigerado.NumeroLote = Validators.isIntValidoConWriteLine("Numero de Lote: ");
             productoRefrigerado.PaisOrigen = Validators.isStringValidoConWriteLine("Pais Origen:");
-            Console.Write("Código del organismo de supervisión alimentaria: ");
-            productoRefrigerado.COSA = Console.ReadLine();
-            Console.Write("Temperatura Recomendada: ");
-            productoRefrigerado.TemperaturaRecomendada = Console.ReadLine();
+            productoRefrigerado.COSA = Validators.isStringValidoConWriteLine("Código del organismo de supervisión alimentaria:");
+            productoRefrigerado.TemperaturaRecomendada = Validators.isStringValidoConWriteLine("Temperatura Recomendada:");
             return productoRefrigerado;
         }
 
@@ -129,8 +243,7 @@ namespace IndustriaAgroalimentaria.Services
 
             productoCongeladoAgua.PaisOrigen = Validators.isStringValidoConWriteLine("Pais Origen:");
 
-            Console.Write("Gramos de sal por litro de agua: ");
-            productoCongeladoAgua.GSPLA = double.Parse(Console.ReadLine());
+            productoCongeladoAgua.GSPLA = Validators.isDoubleValidoConWriteLine("Gramos de sal por litro de agua: ");
 
             return productoCongeladoAgua;
         }
@@ -155,15 +268,14 @@ namespace IndustriaAgroalimentaria.Services
             productoCongeladoNitrogeno.FechaEnvasado = DateTime.Now;
             productoCongeladoNitrogeno.NumeroLote = Validators.isIntValidoConWriteLine("Numero de Lote: ");
 
-            Console.Write("Pais Origen: ");
-            productoCongeladoNitrogeno.PaisOrigen = Console.ReadLine();
+            productoCongeladoNitrogeno.PaisOrigen = Validators.isStringValidoConWriteLine("Pais Origen:");
 
-            Console.Write("Metodo de congelación: ");
-            productoCongeladoNitrogeno.MetodoCongelacion = Console.ReadLine();
+            productoCongeladoNitrogeno.MetodoCongelacion = Validators.isStringValidoConWriteLine("Metodo de congelación: ");
 
-            Console.Write("Exposición al nitrógeno expresada en segundos: ");
-            productoCongeladoNitrogeno.ENPS = Console.ReadLine();
+            productoCongeladoNitrogeno.ENPS = Validators.isStringValidoConWriteLine("Exposición al nitrógeno expresada en segundos: ");
             return productoCongeladoNitrogeno;
         }
+
+        #endregion
     }
 }

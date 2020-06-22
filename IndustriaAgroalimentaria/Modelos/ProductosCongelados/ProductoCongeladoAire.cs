@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IndustriaAgroalimentaria.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,7 +14,7 @@ namespace IndustriaAgroalimentaria.Modelos.ProductosCongelados
 
         public override string ToString()
         {
-            return $"{Id}) Es un producto congelado con {PorcentajeNitrogeno.ToString()}";
+            return $"{Id}) El producto con el numero de lote {NumeroLote}, es un producto congelado con Aire y su porcentaje de nitrogeno es {PorcentajeNitrogeno}";
         }
 
 

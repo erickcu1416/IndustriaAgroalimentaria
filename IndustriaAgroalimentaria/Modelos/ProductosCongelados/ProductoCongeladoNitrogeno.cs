@@ -15,5 +15,10 @@ namespace IndustriaAgroalimentaria.Modelos.ProductosCongelados
         //    MetodoCongelacion = metodoCongelacion;
         //    ENPS = enps;
         //}
+
+        public override string ToString()
+        {
+            return $"{Id}) El producto con el numero de lote {NumeroLote}, es un producto congelado con nitrogeno y ENPS de {ENPS}";
+        }
     }
 }

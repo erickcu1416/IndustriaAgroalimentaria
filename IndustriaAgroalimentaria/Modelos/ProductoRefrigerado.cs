@@ -15,5 +15,10 @@ namespace IndustriaAgroalimentaria.Modelos
         //    TemperaturaRecomendada = temperturaRecomendada;
         //}
 
+        public override string ToString()
+        {
+            return $"{Id}) El producto con el numero de lote {NumeroLote}, es un producto Refrigerado y su COSA es {COSA}";
+        }
+
     }
 }
